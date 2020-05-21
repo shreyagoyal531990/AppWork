@@ -25,7 +25,15 @@ export class AddTransactionComponent implements OnInit {
  async addTransactionForm(){
    try{
     console.log(this.new_transaction.value)
-    var data_of_transaction={...this.new_transaction.value,'creation_time':Date.now()}
+  var running_balance:any;
+    if(this.previous && this.previous['running_balance']){
+      running_balance=(this.new_transaction.value.transaction_type=='Credit')?
+       this.previous['running_balance']+this.new_transaction.value.amount:this.previous['running_balance']-this.new_transaction.value.amount}
+      else{
+        running_balance=(this.new_transaction.value.transaction_type=='Credit')?
+        this.new_transaction.value.amount:-(this.new_transaction.value.amount)
+      }
+    var data_of_transaction={...this.new_transaction.value,'creation_time':Date.now(),'running_balance':running_balance}
     await this.crud_service.createItem('transactions',data_of_transaction)
     console.log("Data is successfully added to firestore")
     this.new_transaction.reset()
@@ -42,6 +50,7 @@ this.modalController.dismiss()
   ngOnInit() {}
   ngAfterViewInit(){
     console.log("this.previous",this.previous)
+    
   }
 
 }

@@ -29,7 +29,8 @@ self.transactions=[...transactions_obtained]
     const modal = await this.modalController.create({
       component: AddTransactionComponent,
       
-      componentProps:{previous:(this.transactions && this.transactions.length>0)?this.transactions[this.transactions.length]:[]}
+      componentProps:{previous:(this.transactions && this.transactions.length>0)
+        ?this.transactions[0]:[]}
     });
     return await modal.present();
   }

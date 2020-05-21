@@ -1,0 +1,29 @@
+<!-- <div>
+  <p>Add Transaction</p>
+  <ion-icon name="close" class="close-icon" (click)="closeTheForm()"></ion-icon>
+</div> -->
+<!-- <span>Add Transaction<ion-icon name="close" class="close-icon" (click)="closeTheForm()"></ion-icon></span> -->
+<form [formGroup]="new_transaction" (ngSubmit)="addTransactionForm()" class="form">
+  <ion-item>
+    <p>Transaction Type</p>
+    <ion-select   formControlName="transaction_type" interface="popover">
+      <ion-select-option value='Credit'>Credit</ion-select-option>
+      <ion-select-option value='Debit'>Debit</ion-select-option>
+    </ion-select>
+  </ion-item>
+
+  <ion-item>
+    <ion-label>Amount</ion-label>
+    <ion-input type="number" formControlName="amount"></ion-input>
+  </ion-item>
+  <ion-item>
+    <ion-label>Description</ion-label>
+    <ion-textarea formControlName="description"></ion-textarea>
+  </ion-item>
+  <div  class="close-icon">
+    <ion-button size="small" type="submit" [disabled]="!new_transaction.valid">Save</ion-button>
+    <ion-button size="small" (click)="closeTheForm()">Cancel</ion-button>
+  </div>
+
+
+</form>

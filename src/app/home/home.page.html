@@ -1,0 +1,35 @@
+
+
+<ion-content [fullscreen]="true">
+
+
+  <div id="container">
+    <ion-row>
+      <ion-col>Office Transactions</ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+      <ion-col>
+  <ion-button size="small" (click)="presentModal()"><ion-icon name="add"></ion-icon>Add Transaction</ion-button>
+
+      </ion-col>
+
+    </ion-row>
+    <ion-row>
+      <ion-col>Date</ion-col>
+      <ion-col>Desciption</ion-col>
+      <ion-col>Credit</ion-col>
+      <ion-col>Debit</ion-col>
+      <ion-col>Running Balance</ion-col>
+
+    </ion-row>
+    <ion-row *ngFor="let item of transactions ">
+      <ion-col>{{item.creation_time|date}}</ion-col>
+      <ion-col>{{item.description}}</ion-col>
+      <ion-col>{{item.transaction_type=='Credit'?item.amount:''}}</ion-col>
+      <ion-col>{{item.transaction_type=='Debit'?item.amount:''}}</ion-col>
+      <ion-col>{{item.running_balance?item.running_balance:''}}</ion-col>
+
+    </ion-row>
+  </div>
+</ion-content>
